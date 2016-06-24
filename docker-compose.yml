@@ -1,0 +1,33 @@
+version: '2'
+
+volumes:
+  postgres_data: {}
+  postgres_backup: {}
+  teamcity_server_data: {}
+  teamcity_server_logs: {}
+  teamcity_agent_conf: {}
+
+services:
+  postgres:
+    build: ./compose/postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - postgres_backup:/backups
+    env_file: .env
+
+  teamcity-server:
+    image: jetbrains/teamcity-server
+    volumes:
+      - teamcity_server_data:/data/teamcity_server/datadir
+      - teamcity_server_logs:/opt/teamcity/logs
+    ports:
+      - 8111:8111
+    depends_on:
+      - postgres
+    env_file: .env
+
+  teamcity-agent:
+    image: jetbrains/teamcity-minimal-agent
+    volumes:
+      - teamcity_agent_conf:/data/teamcity_agent/conf
+    env_file: .env
