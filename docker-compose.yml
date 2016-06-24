@@ -9,7 +9,7 @@ volumes:
 
 services:
   postgres:
-    build: ./compose/postgres
+    build: ./postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - postgres_backup:/backups
