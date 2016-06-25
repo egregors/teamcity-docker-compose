@@ -7,6 +7,7 @@ Compose to create working [TeamCity](https://www.jetbrains.com/teamcity/) server
 [teamcity agent](https://hub.docker.com/r/jetbrains/teamcity-minimal-agent/),
 [postgres](https://hub.docker.com/_/postgres/)
 
+
 # How to use
 
 Clone this repository or download the zip.
@@ -21,6 +22,9 @@ https://github.com/Egregors/teamcity-docker-compose.git`
 First of all, you should set your Postgres username and password variables in `env.example` and rename `env.example` to `.env`
 
 Don't push `.env` file in public repositories!
+
+It's all. PostgreSQL already configured according to the
+JetBrains [recommendations](https://confluence.jetbrains.com/pages/viewpage.action?pageId=74847395#HowTo...-ConfigureNewlyInstalledPostgreSQLServer)
 
 
 ## Building and setup
@@ -39,6 +43,7 @@ docker-compose up
 ```
 
 After initialisation Web Interface will be available on `http://yourdockerhost:8111/`
+
 
 ### Setup DB
 
