@@ -73,3 +73,18 @@ and click «Refresh JDBC drivers»
 ![Alt text](raw/img/3.png?raw=true)
 
 Done, TeamCity basically ready to work.
+
+### Scaling
+
+Scaling you workers (agents) supported as well. Just use `docker-compose scale` command:
+
+```
+docker-compose scale teamcity-agent=5
+```
+
+**Keep in mind, currently, agents are stateless**
+
+### Contributing
+
+Bug reports, bug fixes, and new features are always welcome.
+Please open issues, and submit pull requests for any new code.

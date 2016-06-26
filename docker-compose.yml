@@ -5,7 +5,6 @@ volumes:
   postgres_backup: {}
   teamcity_server_data: {}
   teamcity_server_logs: {}
-  teamcity_agent_conf: {}
 
 services:
   postgres:
@@ -28,6 +27,4 @@ services:
 
   teamcity-agent:
     image: jetbrains/teamcity-minimal-agent
-    volumes:
-      - teamcity_agent_conf:/data/teamcity_agent/conf
     env_file: .env
