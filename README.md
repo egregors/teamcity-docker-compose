@@ -47,13 +47,13 @@ After initialisation Web Interface will be available on `http://yourdockerhost:8
 
 ### Setup DB
 
-1. Open `http://yourdockerhost:8111/`
+Open `http://yourdockerhost:8111/`
 
 Set PostgreSQL as database type
 
 ![Alt text](raw/img/1.png?raw=true)
 
-2. Download and copy [JDBC41 driver](https://jdbc.postgresql.org/download.html#current) into your teamcity container:
+Download and copy [JDBC41 driver](https://jdbc.postgresql.org/download.html#current) into your teamcity container:
 
 
 ![Alt text](raw/img/0.png?raw=true)
@@ -64,27 +64,45 @@ docker cp postgresql-9.4.1208.jre7.jar teamcitydockercompose_teamcity-server_1:/
 ```
 and click «Refresh JDBC drivers»
 
-3. Configurate DB connector:
+Configurate DB connector:
 
 ![Alt text](raw/img/2.png?raw=true)
 
-4. Authorize your Agent:
+Authorize your Agent:
 
 ![Alt text](raw/img/3.png?raw=true)
 
 Done, TeamCity basically ready to work.
 
-### Scaling
+## Scaling
 
 Scaling you workers (agents) supported as well. Just use `docker-compose scale` command:
 
 ```
 docker-compose scale teamcity-agent=5
 ```
-
 **Keep in mind, currently, agents are stateless**
 
-### Contributing
+
+
+## Platform-specific agents
+
+You can use our preconfigured custom agents with already installed necessary dependencies
+
+### Python3 / Django
+
+Agent [info](agents/django/README.md)
+
+Run server + agent:
+```
+docker-compose -f tc-django-agent.yml build
+docker-compose -f tc-django-agent.yml up
+# optional
+docker-compose -f tc-django-agent.yml scale teamcity-django-agent=5
+```
+
+
+## Contributing
 
 Bug reports, bug fixes, and new features are always welcome.
 Please open issues, and submit pull requests for any new code.
