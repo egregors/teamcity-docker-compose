@@ -11,3 +11,6 @@ CHANGELOG
 * Add platform-specific agents (py3 / django)
 * Agents are stateless now
 * Add ability to scale agents
+
+#### ver.: 0.1.3 (29.06.2016)
+* Update py3 / django agent (add locale)
