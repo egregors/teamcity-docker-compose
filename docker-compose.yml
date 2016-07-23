@@ -13,6 +13,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - postgres_backup:/backups
     env_file: .env
+    restart: always
 
   teamcity-server:
     image: jetbrains/teamcity-server
@@ -24,7 +25,9 @@ services:
     depends_on:
       - postgres
     env_file: .env
+    restart: always
 
   teamcity-agent:
     image: jetbrains/teamcity-minimal-agent
     env_file: .env
+    restart: always
