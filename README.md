@@ -13,7 +13,7 @@ Compose to create working [TeamCity](https://www.jetbrains.com/teamcity/) server
 Clone this repository or download the zip.
 
 ```
-https://github.com/Egregors/teamcity-docker-compose.git`
+git clone https://github.com/Egregors/teamcity-docker-compose.git
 ```
 
 
@@ -84,9 +84,10 @@ docker-compose scale teamcity-agent=5
 **Keep in mind, currently, agents are stateless**
 
 
-## Backup, restore, or migrate data volumes
+## Backups / restore
 
-TODO..
+You may use JetBrains way to [backup](https://confluence.jetbrains.com/display/TCD10/TeamCity+Data+Backup) 
+or [restore](https://confluence.jetbrains.com/display/TCD10/Restoring+TeamCity+Data+from+Backup) your server
 
 ## Platform-specific agents
 
