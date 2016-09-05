@@ -10,9 +10,14 @@ ENV LC_ALL en_US.UTF-8
 RUN apt-get update && apt-get install -y \
     python3.4-venv \
 	python3-pip \
+	software-properties-common \
 	# pg
 	libpq-dev \
 	# images
 	libjpeg-dev \
 	zlib1g-dev \
 	libpng12-dev
+
+# Install ansible
+RUN apt-add-repository -y ppa:ansible/ansible
+RUN apt-get update && apt-get install -y ansible

@@ -13,6 +13,9 @@
 * jpeg
 * png
 
+### Ansible
+* hm.. ansible
+
 ## Command Line Build Steps example
 
 ```
