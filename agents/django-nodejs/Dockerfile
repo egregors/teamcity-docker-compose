@@ -22,7 +22,3 @@ RUN apt-get update && apt-get install -y \
 
 # nodejs 
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && apt-get -y install nodejs
-
-# Install ansible
-RUN apt-add-repository -y ppa:ansible/ansible
-RUN apt-get update && apt-get install -y ansible

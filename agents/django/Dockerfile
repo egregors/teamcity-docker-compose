@@ -6,11 +6,11 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-# Install Python staff
+# Install Python stuff
 RUN apt-get update && apt-get install -y \
     # git
     git \
-    # python staff
+    # python stuff
     python3.4-venv \
 	python3-pip \
 	software-properties-common \
@@ -20,7 +20,3 @@ RUN apt-get update && apt-get install -y \
 	libjpeg-dev \
 	zlib1g-dev \
 	libpng12-dev
-
-# Install ansible
-RUN apt-add-repository -y ppa:ansible/ansible
-RUN apt-get update && apt-get install -y ansible

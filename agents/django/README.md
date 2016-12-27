@@ -9,12 +9,9 @@
 ### DB
 * PostgreSQL dev lib
 
-### Libs for work with imgs
+### Libs for work with images
 * jpeg
 * png
-
-### Ansible
-* hm.. ansible
 
 ## Command Line Build Steps example
 

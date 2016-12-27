@@ -1,5 +1,5 @@
 CHANGELOG
-================
+=========
 
 #### ver.: 0.1.0 (24.06.2016)
 * First release
@@ -14,3 +14,10 @@ CHANGELOG
 
 #### ver.: 0.1.3 (29.06.2016)
 * Update py3 / django agent (add locale)
+
+#### ver.: 0.2.0 (27.12.2016)
+* Add restart policy
+* Drop ansible support for django agents (django, django-nodejs)
+* Add GIT to django agent
+* Add Django + Node.js agent
+* Readme updates

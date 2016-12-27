@@ -102,7 +102,19 @@ Run server + agent:
 docker-compose -f tc-django-agent.yml build
 docker-compose -f tc-django-agent.yml up
 # optional
-docker-compose -f tc-django-agent.yml scale teamcity-django-agent=5
+docker-compose -f tc-django-agent.yml scale teamcity-django-agent=3
+```
+
+### Python3 / Django / Node.js
+
+Agent [info](agents/django-nodejs/README.md)
+
+Run server + agent:
+```
+docker-compose -f tc-django-nodejs-agent.yml build
+docker-compose -f tc-django-nodejs-agent.yml up
+# optional
+docker-compose -f tc-django-nodejs-agent.yml scale teamcity-django-agent=3
 ```
 
 
