@@ -79,7 +79,7 @@ Done, TeamCity basically ready to work.
 Scaling you workers (agents) supported as well. Just use `docker-compose scale` command:
 
 ```
-docker-compose scale teamcity-agent=5
+docker-compose scale teamcity-agent=3
 ```
 **Keep in mind, currently, agents are stateless**
 
