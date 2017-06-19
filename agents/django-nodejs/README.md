@@ -3,12 +3,11 @@
 ## Installed software
 
 ### Python
-* python3.4
-* venv
+* python3.6.1
 
 ### NodeJS
-* nodejs 6.3.1
-* npm 3.10.3
+* nodejs 8.1.2
+* npm 5.0.3
 
 ### DB
 * PostgreSQL dev lib
@@ -21,10 +20,10 @@
 
 ```
 #!/bin/bash
-python3 -m venv env
+python3.6 -m venv env
 source env/bin/activate
 pip install -r requirements/test.txt
-python3 manage.py test
+python3.6 manage.py test
 ```
 
 Example for nodejs

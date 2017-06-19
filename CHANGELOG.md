@@ -21,3 +21,6 @@ CHANGELOG
 * Add GIT to django agent
 * Add Django + Node.js agent
 * Readme updates
+
+#### ver.: 0.2.1 (19.06.2017)
+* Update Django + Node.js agent
