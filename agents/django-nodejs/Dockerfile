@@ -1,11 +1,5 @@
 FROM jetbrains/teamcity-minimal-agent:latest
 
-# Set the locale
-#RUN locale-gen en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
-
 # Install Python stuff
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -18,7 +12,14 @@ RUN apt-get update && apt-get install -y \
     libgdbm-dev \
     libc6-dev \
     libbz2-dev \
-    wget
+    wget \
+    locales
+
+# Set the locale
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 RUN cd /usr/src && wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tgz && tar xzf Python-3.6.1.tgz
 
