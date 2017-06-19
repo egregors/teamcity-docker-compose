@@ -38,4 +38,4 @@ RUN apt-get update && apt-get install -y \
     libpng12-dev
 
 # nodejs 
-RUN curl -sL https://deb.nodesource.com/setup_7.x | bash - && apt-get -y install nodejs
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && apt-get -y install nodejs
