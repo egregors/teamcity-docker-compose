@@ -49,22 +49,11 @@ After initialisation Web Interface will be available on `http://yourdockerhost:8
 
 Open `http://yourdockerhost:8111/`
 
-Set PostgreSQL as database type
+Set PostgreSQL as database type and click «Refresh JDBC drivers»
 
 ![Alt text](raw/img/1.png?raw=true)
 
-Download and copy [JDBC41 driver](https://jdbc.postgresql.org/download.html#current) into your teamcity container:
-
-
-![Alt text](raw/img/0.png?raw=true)
-
-```
-cd Downloads
-docker cp postgresql-9.4.1208.jre7.jar teamcitydockercompose_teamcity-server_1:/data/teamcity_server/datadir/lib/jdbc/
-```
-and click «Refresh JDBC drivers»
-
-Configurate DB connector:
+Configurate DB connection:
 
 ![Alt text](raw/img/2.png?raw=true)
 
@@ -92,18 +81,6 @@ or [restore](https://confluence.jetbrains.com/display/TCD10/Restoring+TeamCity+D
 ## Platform-specific agents
 
 You can use our preconfigured custom agents with already installed necessary dependencies
-
-### Python3 / Django
-
-Agent [info](agents/django/README.md)
-
-Run server + agent:
-```
-docker-compose -f tc-django-agent.yml build
-docker-compose -f tc-django-agent.yml up
-# optional
-docker-compose -f tc-django-agent.yml scale teamcity-django-agent=3
-```
 
 ### Python3 / Django / Node.js
 

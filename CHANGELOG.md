@@ -24,3 +24,9 @@ CHANGELOG
 
 #### ver.: 0.2.1 (19.06.2017)
 * Update Django + Node.js agent
+
+#### ver.: 0.3 (18.08.2017)
+* Custom TC server Dockerfile
+* Auto download JDBC driver (issue #3)
+* Remove Django agent
+* Readme updates
