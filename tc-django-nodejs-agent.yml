@@ -16,7 +16,7 @@ services:
     restart: always
 
   teamcity-server:
-    image: jetbrains/teamcity-server
+    build: ./server
     volumes:
       - teamcity_server_data:/data/teamcity_server/datadir
       - teamcity_server_logs:/opt/teamcity/logs
