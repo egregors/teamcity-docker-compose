@@ -30,3 +30,9 @@ CHANGELOG
 * Auto download JDBC driver (issue #3)
 * Remove Django agent
 * Readme updates
+
+#### ver.: 0.4 (13.09.2017)
+* Add HTTPs support (Let's Encrypt)
+* Add nginx conf for TC server
+* Cleanup
+* Readme updates

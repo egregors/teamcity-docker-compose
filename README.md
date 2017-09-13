@@ -26,6 +26,26 @@ Don't push `.env` file in public repositories!
 It's all. PostgreSQL already configured according to the
 JetBrains [recommendations](https://confluence.jetbrains.com/pages/viewpage.action?pageId=74847395#HowTo...-ConfigureNewlyInstalledPostgreSQLServer)
 
+### HTTPs support
+
+To add HTTPs nginx-proxy with Let's Encrypt certificates (see https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion) just set your domain name and email for `nginx` service in compose file:
+
+
+```
+  nginx:
+    image: nginx
+    links:
+      - teamcity-server
+    volumes:
+      - "./server/etc/nginx/conf.d/:/etc/nginx/conf.d/"
+    environment:
+      # set your domain name and email!
+      VIRTUAL_HOST: ci.example.com
+      LETSENCRYPT_HOST: ci.example.com
+      LETSENCRYPT_EMAIL: username@example.ru
+```
+
+If you don't need HTTPs support – remove `nginx`, `nginx-proxy` and `letsencrypt-nginx-proxy-companion` services from your docker-compose file
 
 ## Building and setup
 
@@ -42,12 +62,12 @@ Now you can Up the service and continue settings in Web Interface:
 docker-compose up
 ```
 
-After initialisation Web Interface will be available on `http://yourdockerhost:8111/`
+After initialisation Web Interface will be available on `https://yourdockerhost/` (with HTTPs support) or `http://yourdockerhost:8111/`
 
 
 ### Setup DB
 
-Open `http://yourdockerhost:8111/`
+Open `https://yourdockerhost/` or `http://yourdockerhost:8111/`
 
 Set PostgreSQL as database type and click «Refresh JDBC drivers»
 
