@@ -37,7 +37,10 @@ CHANGELOG
 * Cleanup
 * Readme updates
 
-#### ver.: 0.4.3 (13.09.2017)
+#### ver.: 0.4.3 (14.09.2017)
 * Big uploads support (up to 500M)
 * WebSocket support for nginx-proxy 
 * Custom conf for proxy
+
+#### ver.: 0.4.4 (14.09.2017)
+* Compose fixes

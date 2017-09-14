@@ -38,7 +38,7 @@ services:
     links:
       - teamcity-server
     volumes:
-      - "./server/tc.conf:/etc/nginx/conf.d/tc.conf"
+      - "./server/tc.conf:/etc/nginx/conf.d/default.conf"
     environment:
       # set your domain name and email!
       VIRTUAL_HOST: ci.example.com
