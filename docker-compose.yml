@@ -38,7 +38,7 @@ services:
     links:
       - teamcity-server
     volumes:
-      - "./server/etc/nginx/conf.d/:/etc/nginx/conf.d/"
+      - "./server/tc.conf:/etc/nginx/conf.d/tc.conf"
     environment:
       # set your domain name and email!
       VIRTUAL_HOST: ci.example.com
@@ -55,6 +55,7 @@ services:
       - "./nginx/html:/usr/share/nginx/html"
       - "./nginx/certs:/etc/nginx/certs"
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "./server/proxy.conf:/etc/nginx/conf.d/proxy.conf"
 
   letsencrypt-nginx-proxy-companion:
     image: jrcs/letsencrypt-nginx-proxy-companion
