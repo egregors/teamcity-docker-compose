@@ -98,6 +98,37 @@ docker-compose scale teamcity-agent=3
 You may use JetBrains way to [backup](https://confluence.jetbrains.com/display/TCD10/TeamCity+Data+Backup) 
 or [restore](https://confluence.jetbrains.com/display/TCD10/Restoring+TeamCity+Data+from+Backup) your server
 
+
+## Update
+
+If you see a notice that new version an available, you may update your TeamCity that way:
+
+```
+# build new version
+docker-compose build --pull --no-cache
+
+# stop and remove old containers
+docker-compose stop
+docker-compose rm
+
+# create and up new containers
+docker-compose up -d
+```
+
+After update, you need to reauthorize your agents.
+
+### Updating maintenance
+
+Sometimes, during updating you may get «maintenance is required» message instead login page. 
+It's ok! To login in maintenance mode you need to enter an authentication token. You may find it in logs:
+`docker-compose logs -f`
+
+Try to find something like this:
+
+```
+teamcity-server_1                    | [TeamCity] Administrator can login from web UI using authentication token: 8755994969038184734
+```
+
 ## Platform-specific agents
 
 You can use our preconfigured custom agents with already installed necessary dependencies
