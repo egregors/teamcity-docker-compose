@@ -44,3 +44,6 @@ CHANGELOG
 
 #### ver.: 0.4.4 (14.09.2017)
 * Compose fixes
+
+#### ver.: 0.5.0 (06.12.2017)
+* Add Ruby Bundle agent

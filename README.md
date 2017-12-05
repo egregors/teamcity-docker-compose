@@ -1,6 +1,10 @@
 # teamcity-docker-compose
 Compose to create working [TeamCity](https://www.jetbrains.com/teamcity/) server with PostgreSQL and Agents
 
+![state](https://img.shields.io/badge/state-stable-brightgreen.svg)
+![ssl](https://img.shields.io/badge/SSL-OK-brightgreen.svg)
+![jdbc version](https://img.shields.io/badge/jdbc%20postgresql%20version-42.1.4-green.svg)
+
 **This configuration use only official images:**
 
 [teamcity server](https://hub.docker.com/r/jetbrains/teamcity-server/),
@@ -145,6 +149,9 @@ docker-compose -f tc-django-nodejs-agent.yml up
 docker-compose -f tc-django-nodejs-agent.yml scale teamcity-django-agent=3
 ```
 
+### Ruby / Bundle
+
+Agent [info](agents/bundler-ruby/README.md)
 
 ## Contributing
 
