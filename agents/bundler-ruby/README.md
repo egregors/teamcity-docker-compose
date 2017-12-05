@@ -1,4 +1,4 @@
-# Python3 / Django + NodeJS TC Agent
+# Ruby / Bundle TC Agent
 
 ## Installed software
 

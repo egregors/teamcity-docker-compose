@@ -1,4 +1,5 @@
 FROM jetbrains/teamcity-minimal-agent:latest
+LABEL email=yaronidan@gmail.com
 
 RUN apt-get update && apt-get -y install \
     curl
