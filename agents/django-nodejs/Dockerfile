@@ -21,9 +21,9 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN cd /usr/src && wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tgz && tar xzf Python-3.6.1.tgz
+RUN cd /usr/src && wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz && tar xzf Python-3.7.0.tgz
 
-RUN cd /usr/src/Python-3.6.1 && ./configure && make altinstall
+RUN cd /usr/src/Python-3.7.0 && ./configure && make altinstall
 
 RUN apt-get update && apt-get install -y \
     git \

@@ -3,7 +3,7 @@ Compose to create working [TeamCity](https://www.jetbrains.com/teamcity/) server
 
 ![state](https://img.shields.io/badge/state-stable-brightgreen.svg)
 ![ssl](https://img.shields.io/badge/SSL-OK-brightgreen.svg)
-![jdbc version](https://img.shields.io/badge/jdbc%20postgresql%20version-42.1.4-green.svg)
+![jdbc version](https://img.shields.io/badge/jdbc%20postgresql%20version-42.2.4-brightgreen.svg)
 
 **This configuration use only official images:**
 
@@ -11,6 +11,10 @@ Compose to create working [TeamCity](https://www.jetbrains.com/teamcity/) server
 [teamcity agent](https://hub.docker.com/r/jetbrains/teamcity-minimal-agent/),
 [postgres](https://hub.docker.com/_/postgres/)
 
+***Keep in mind, if you already have used this compose ver. 0.5.0 with TeamCity 2017.1.x 
+you can not migrate your data (backups) into compose ver. 0.6.0 with latest TeamCity 2018.1.1,
+ because JetBrains don't support import projects backups from previous major version. 
+ See: [TeamCity Documentation](https://confluence.jetbrains.com/display/TCD18/Upgrade)***
 
 # How to use
 
@@ -49,7 +53,8 @@ To add HTTPs nginx-proxy with Let's Encrypt certificates (see https://github.com
       LETSENCRYPT_EMAIL: username@example.ru
 ```
 
-If you don't need HTTPs support – remove `nginx`, `nginx-proxy` and `letsencrypt-nginx-proxy-companion` services from your docker-compose file
+If you don't need HTTPs support – remove `nginx`, `nginx-proxy` and `letsencrypt-nginx-proxy-companion` services 
+from your docker-compose file (like in `docker-compose-without-ssl.yml)`
 
 ## Build and setup
 
@@ -73,7 +78,8 @@ After initialisation Web Interface will be available on `https://yourdockerhost/
 
 Open `https://yourdockerhost/` or `http://yourdockerhost:8111/`
 
-Set PostgreSQL as database type and click «Refresh JDBC drivers»
+Set PostgreSQL as database type, upload [JDBC driver](https://jdbc.postgresql.org/download/postgresql-42.2.4.jar) into
+ `/opt/teamcity/data/lib/jdbc/` then click «Refresh JDBC drivers»
 
 ![Alt text](raw/img/1.png?raw=true)
 
@@ -143,10 +149,10 @@ Agent [info](agents/django-nodejs/README.md)
 
 Run server + agent:
 ```
-docker-compose -f tc-django-nodejs-agent.yml build
-docker-compose -f tc-django-nodejs-agent.yml up
+docker-compose -f docker-compose-custom-agent.yml build
+docker-compose -f docker-compose-custom-agent.yml up
 # optional
-docker-compose -f tc-django-nodejs-agent.yml scale teamcity-django-agent=3
+docker-compose -f docker-compose-custom-agent.yml scale teamcity-django-agent=3
 ```
 
 ### Ruby / Bundle

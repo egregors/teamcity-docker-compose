@@ -47,3 +47,9 @@ CHANGELOG
 
 #### ver.: 0.5.0 (06.12.2017)
 * Add Ruby Bundle agent
+
+#### ver.: 0.6.0 (26.07.2018)
+* !!! (not compatible with 0.5.0 or TeamCity 2018.1) !!! Update compose conf according JetBrains recommendations (Issue #11)
+* No more anon volumes (all dirs mount to host)
+* Remove old JDBC driver
+* Remove custom server Dockerfile, now server use directly original JetBrains image

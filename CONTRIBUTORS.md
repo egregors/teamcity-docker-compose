@@ -1,5 +1,5 @@
 # Contributors
 
-* Vadim Iskuchekov @egregors (code, django agent)
+* Vadim Iskuchekov @egregors (core, django agent)
 * Yaron Idan (ruby bundle agent)
 * Sergey Melekhin (grammar nazi)

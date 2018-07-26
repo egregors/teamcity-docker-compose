@@ -1,26 +1,20 @@
 version: '2'
 
-volumes:
-  postgres_data: {}
-  postgres_backup: {}
-  teamcity_server_data: {}
-  teamcity_server_logs: {}
-
 services:
 
   postgres:
     build: ./postgres
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - postgres_backup:/backups
+      - /opt/teamcity/pg_data:/var/lib/postgresql/data
+      - /opt/teamcity/pg_backup:/backups
     env_file: .env
     restart: always
 
   teamcity-server:
-    build: ./server
+    image: jetbrains/teamcity-server
     volumes:
-      - teamcity_server_data:/data/teamcity_server/datadir
-      - teamcity_server_logs:/opt/teamcity/logs
+      - /opt/teamcity/data:/data/teamcity_server/datadir
+      - /opt/teamcity/logs:/opt/teamcity/logs
     ports:
       - 8111:8111
     depends_on:
