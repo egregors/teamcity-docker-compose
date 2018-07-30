@@ -14,7 +14,10 @@ Compose to create working [TeamCity](https://www.jetbrains.com/teamcity/) server
 ***Keep in mind, if you already have used this compose ver. 0.5.0 with TeamCity 2017.1.x 
 you can not migrate your data (backups) into compose ver. 0.6.0 with latest TeamCity 2018.1.1,
  because JetBrains don't support import projects backups from previous major version. 
- See: [TeamCity Documentation](https://confluence.jetbrains.com/display/TCD18/Upgrade)***
+ See: [TeamCity Documentation](https://confluence.jetbrains.com/display/TCD18/Upgrade). 
+ Instead you need to rerun your 0.5.0 compose with new teamcity-server (2018.1.1) and migrate 
+ data to new format. After this, you may make correct backup for compose 0.6.0 and upgrade to
+ version without anon volumes.***
 
 # How to use
 
