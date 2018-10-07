@@ -53,3 +53,7 @@ CHANGELOG
 * No more anon volumes (all dirs mount to host)
 * Remove old JDBC driver
 * Remove custom server Dockerfile, now server use directly original JetBrains image
+
+#### ver.: 0.6.1 (07.10.2018)
+* Django-nodejs Agent: downgrade python from 3.7 to 3.6.6
+* Set `latest` docker tag as default for JetBrains images
