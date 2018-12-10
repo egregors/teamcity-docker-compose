@@ -1,5 +1,8 @@
 FROM jetbrains/teamcity-minimal-agent:latest
 
+ENV DEBIAN_FRONTEND noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN true
+
 # Install Python stuff
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -35,7 +38,7 @@ RUN apt-get update && apt-get install -y \
     # images
     libjpeg-dev \
     zlib1g-dev \
-    libpng12-dev
+    libpng-dev
 
-# nodejs 
+# nodejs
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && apt-get -y install nodejs
