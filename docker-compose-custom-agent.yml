@@ -33,7 +33,7 @@ services:
   nginx:
     image: nginx
     links:
-      - teamcity-server
+      - server
     volumes:
       - "./server/tc.conf:/etc/nginx/conf.d/default.conf"
     environment:
