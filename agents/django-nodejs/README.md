@@ -3,7 +3,7 @@
 ## Installed software
 
 ### Python
-* python3.6.1
+* python3.6.6
 
 ### NodeJS
 * nodejs 8.1.2
@@ -16,21 +16,6 @@
 * jpeg
 * png
 
-## Command Line Build Steps example
-
-```
-#!/bin/bash
-python3.6 -m venv env
-source env/bin/activate
-pip install -r requirements/test.txt
-python3.6 manage.py test
-```
-
-Example for nodejs
-```
-#!/bin/bash
-
-npm install
-npm run test
-npm run build
-```
+## Utils
+* docker client
+* awscli

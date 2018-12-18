@@ -5,16 +5,16 @@ services:
   postgres:
     build: ./postgres
     volumes:
-      - /opt/teamcity/pg_data:/var/lib/postgresql/data
-      - /opt/teamcity/pg_backup:/backups
+      - "/opt/teamcity/pg_data:/var/lib/postgresql/data"
+      - "/opt/teamcity/pg_backup:/backups"
     env_file: .env
     restart: always
 
-  teamcity-server:
+  server:
     image: jetbrains/teamcity-server:latest
     volumes:
-      - /opt/teamcity/data:/data/teamcity_server/datadir
-      - /opt/teamcity/logs:/opt/teamcity/logs
+      - "/opt/teamcity/data:/data/teamcity_server/datadir"
+      - "/opt/teamcity/logs:/opt/teamcity/logs"
     ports:
       - 8111:8111
     depends_on:
@@ -22,7 +22,7 @@ services:
     env_file: .env
     restart: always
 
-  teamcity-agent:
+  agent:
     image: jetbrains/teamcity-minimal-agent
     env_file: .env
     restart: always

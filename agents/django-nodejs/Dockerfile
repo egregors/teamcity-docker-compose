@@ -24,8 +24,8 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
+# Install 3.6.6
 RUN cd /usr/src && wget https://www.python.org/ftp/python/3.6.6/Python-3.6.6.tgz && tar xzf Python-3.6.6.tgz
-
 RUN cd /usr/src/Python-3.6.6 && ./configure && make altinstall
 
 RUN apt-get update && apt-get install -y \
@@ -38,7 +38,13 @@ RUN apt-get update && apt-get install -y \
     # images
     libjpeg-dev \
     zlib1g-dev \
-    libpng-dev
+    libpng-dev \
+    # docker client
+    docker.io \
+    # AWS CLI
+    awscli
 
 # nodejs
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && apt-get -y install nodejs npm
+# gulp
+npm install -g gulp-cli

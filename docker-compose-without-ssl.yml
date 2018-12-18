@@ -10,7 +10,7 @@ services:
     env_file: .env
     restart: always
 
-  teamcity-server:
+  server:
     image: jetbrains/teamcity-server:latest
     volumes:
       - /opt/teamcity/data:/data/teamcity_server/datadir
@@ -22,7 +22,7 @@ services:
     env_file: .env
     restart: always
 
-  teamcity-agent:
+  agent:
     image: jetbrains/teamcity-minimal-agent:latest
     env_file: .env
     restart: always
