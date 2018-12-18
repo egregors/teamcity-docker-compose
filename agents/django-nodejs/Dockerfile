@@ -47,4 +47,4 @@ RUN apt-get update && apt-get install -y \
 # nodejs
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && apt-get -y install nodejs npm
 # gulp
-npm install -g gulp-cli
+RUN npm install -g gulp-cli
