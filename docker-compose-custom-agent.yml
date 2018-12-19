@@ -10,6 +10,9 @@ services:
     env_file: .env
     restart: always
 
+  redis:
+    image: redis:3.2
+
   server:
     image: jetbrains/teamcity-server:latest
     volumes:
@@ -26,6 +29,8 @@ services:
     build: ./agents/django-nodejs
     env_file: .env
     restart: always
+    depends_on:
+      - redis
     # if you need docker inside the agent (http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
