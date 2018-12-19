@@ -57,3 +57,22 @@ CHANGELOG
 #### ver.: 0.6.1 (07.10.2018)
 * Django-nodejs Agent: downgrade python from 3.7 to 3.6.6
 * Set `latest` docker tag as default for JetBrains images
+
+#### ver.: 0.6.2 (19.12.2018)
+* Share docker.sock Update DjangoNode agent (add docker client, gulp cli, aws cli) 
+* Clean up services names
+
+#### ver.: 0.6.3 (19.12.2018)
+* Fix service links for nginx
+
+#### ver.: 0.6.4 (19.12.2018)
+* Fix nginx conf
+
+#### ver.: 0.6.5 (19.12.2018)
+* Move LE email, domain into .env. 
+* Readme update
+* add redis to DjangoNode compose
+
+#### ver.: 0.6.6 (19.12.2018)
+* Readme update
+* .env example update

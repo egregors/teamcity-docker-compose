@@ -49,10 +49,9 @@ POSTGRES_USER=postgresuser
 SERVER_URL=http://server:8111
 
 # set your domain name and email!
-VIRTUAL_HOST: ci.example.com
-LETSENCRYPT_HOST: ci.example.com
-LETSENCRYPT_EMAIL: username@example.ru
-
+VIRTUAL_HOST=ci.example.com
+LETSENCRYPT_HOST=ci.example.com
+LETSENCRYPT_EMAIL=username@example.ru
 ```
 
 If you don't need HTTPs support – remove `nginx`, `nginx-proxy` and `letsencrypt-nginx-proxy-companion` services 
