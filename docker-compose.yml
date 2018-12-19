@@ -33,11 +33,7 @@ services:
       - server
     volumes:
       - "./server/tc.conf:/etc/nginx/conf.d/default.conf"
-    environment:
-      # set your domain name and email!
-      VIRTUAL_HOST: ci.example.com
-      LETSENCRYPT_HOST: ci.example.com
-      LETSENCRYPT_EMAIL: username@example.ru
+    env_file: .env
 
   nginx-proxy:
     image: jwilder/nginx-proxy

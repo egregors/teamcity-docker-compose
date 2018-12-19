@@ -39,21 +39,20 @@ JetBrains [recommendations](https://confluence.jetbrains.com/pages/viewpage.acti
 
 ### HTTPs support
 
-To add HTTPs nginx-proxy with Let's Encrypt certificates (see https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion) just set your domain name and email for `nginx` service in compose file:
+To add HTTPs nginx-proxy with Let's Encrypt certificates (see https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion) just set your domain name and email in `.env` file:
 
 
 ```
-  nginx:
-    image: nginx
-    links:
-      - teamcity-server
-    volumes:
-      - "./server/etc/nginx/conf.d/:/etc/nginx/conf.d/"
-    environment:
-      # set your domain name and email!
-      VIRTUAL_HOST: ci.example.com
-      LETSENCRYPT_HOST: ci.example.com
-      LETSENCRYPT_EMAIL: username@example.ru
+POSTGRES_PASSWORD=mysecretpass
+POSTGRES_USER=postgresuser
+
+SERVER_URL=http://server:8111
+
+# set your domain name and email!
+VIRTUAL_HOST: ci.example.com
+LETSENCRYPT_HOST: ci.example.com
+LETSENCRYPT_EMAIL: username@example.ru
+
 ```
 
 If you don't need HTTPs support – remove `nginx`, `nginx-proxy` and `letsencrypt-nginx-proxy-companion` services 
@@ -153,9 +152,7 @@ Agent [info](agents/django-nodejs/README.md)
 Run server + agent:
 ```
 docker-compose -f docker-compose-custom-agent.yml build
-docker-compose -f docker-compose-custom-agent.yml up
-# optional
-docker-compose -f docker-compose-custom-agent.yml scale teamcity-django-agent=3
+docker-compose -f docker-compose-custom-agent.yml up -d
 ```
 
 ### Ruby / Bundle
