@@ -76,3 +76,7 @@ CHANGELOG
 #### ver.: 0.6.6 (19.12.2018)
 * Readme update
 * .env example update
+
+#### ver.: 0.6.7 (24.03.2019)
+* Set virtual host as hostname of TC container (issue #17)
+* Set* Readme update

@@ -11,14 +11,6 @@ Compose to create working [TeamCity](https://www.jetbrains.com/teamcity/) server
 [teamcity agent](https://hub.docker.com/r/jetbrains/teamcity-minimal-agent/),
 [postgres](https://hub.docker.com/_/postgres/)
 
-***Keep in mind, if you already have used this compose ver. 0.5.0 with TeamCity 2017.1.x 
-you can not migrate your data (backups) into compose ver. 0.6.0 with latest TeamCity 2018.1.1,
- because JetBrains don't support import projects backups from previous major version. 
- See: [TeamCity Documentation](https://confluence.jetbrains.com/display/TCD18/Upgrade). 
- Instead you need to rerun your 0.5.0 compose with new teamcity-server (2018.1.1) and migrate 
- data to new format. After this, you may make correct backup for compose 0.6.0 and upgrade to
- version without anon volumes.***
-
 # How to use
 
 Clone this repository or download the zip.
@@ -26,7 +18,6 @@ Clone this repository or download the zip.
 ```
 git clone https://github.com/Egregors/teamcity-docker-compose.git
 ```
-
 
 ## Configuration
 
@@ -40,7 +31,6 @@ JetBrains [recommendations](https://confluence.jetbrains.com/pages/viewpage.acti
 ### HTTPs support
 
 To add HTTPs nginx-proxy with Let's Encrypt certificates (see https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion) just set your domain name and email in `.env` file:
-
 
 ```
 POSTGRES_PASSWORD=mysecretpass
@@ -147,12 +137,6 @@ You can use our preconfigured custom agents with already installed necessary dep
 ### Python3 / Django / Node.js
 
 Agent [info](agents/django-nodejs/README.md)
-
-Run server + agent:
-```
-docker-compose -f docker-compose-custom-agent.yml build
-docker-compose -f docker-compose-custom-agent.yml up -d
-```
 
 ### Ruby / Bundle
 
