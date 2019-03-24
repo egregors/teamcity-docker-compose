@@ -12,6 +12,7 @@ services:
 
   server:
     image: jetbrains/teamcity-server:latest
+    hostname: ${VIRTUAL_HOST}
     volumes:
       - "/opt/teamcity/data:/data/teamcity_server/datadir"
       - "/opt/teamcity/logs:/opt/teamcity/logs"
