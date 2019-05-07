@@ -48,7 +48,13 @@ RUN apt-get update && apt-get install -y \
 RUN curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 RUN chmod +x /usr/local/bin/docker-compose
 
-# nodejs
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && apt-get -y install nodejs npm
-# gulp
-RUN npm install -g gulp-cli
+# node 11 and yarn 1.15
+RUN curl -sL https://deb.nodesource.com/setup_11.x -o nodesource_setup.sh
+RUN bash nodesource_setup.sh
+RUN apt-get install -y nodejs
+RUN node -v
+
+RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && sudo apt-get install yarn
+RUN yarn -v

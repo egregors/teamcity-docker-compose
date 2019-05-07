@@ -1,13 +1,13 @@
-# Python3 / Django + NodeJS TC Agent
+# Python3 / NodeJS, Yarn TC Agent
 
 ## Installed software
 
 ### Python
-* python3.6.6
+* python 3.6.6
 
 ### NodeJS
-* nodejs 8.1.2
-* npm 5.0.3
+* nodejs 11.x
+* yarn 1.15
 
 ### DB
 * PostgreSQL dev lib

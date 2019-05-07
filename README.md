@@ -134,11 +134,11 @@ teamcity-server_1                    | [TeamCity] Administrator can login from w
 
 You can use our preconfigured custom agents with already installed necessary dependencies
 
-### Python3 / Django / Node.js
+### Python 3 | Node.js 11, yarn 1.15
 
-Agent [info](agents/django-nodejs/README.md)
+Agent [info](agents/python-node-yarn/README.md)
 
-### Ruby / Bundle
+### Ruby | Bundle
 
 Agent [info](agents/bundler-ruby/README.md)
 

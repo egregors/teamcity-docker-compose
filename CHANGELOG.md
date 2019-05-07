@@ -80,3 +80,8 @@ CHANGELOG
 #### ver.: 0.6.7 (24.03.2019)
 * Set virtual host as hostname of TC container (issue #17)
 * Set* Readme update
+
+#### ver.: 0.7 (07.05.2019)
+* Removed old python agent
+* Add python 3 | node 11 agent
+* Python | node agent as agent in custom agent compose

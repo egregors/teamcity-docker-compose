@@ -27,7 +27,7 @@ services:
     restart: always
 
   agent:
-    build: ./agents/django-nodejs
+    build: ./agents/python-node-yarn
     env_file: .env
     restart: always
     depends_on:
