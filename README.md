@@ -105,15 +105,21 @@ or [restore](https://confluence.jetbrains.com/display/TCD10/Restoring+TeamCity+D
 If you see a notice that a new version is available, you may update your TeamCity that way:
 
 ```
+# stop and remove old containers
+docker-compose stop
+docker-compose down --rmi all
+
 # build new version
 docker-compose build --pull --no-cache
 
-# stop and remove old containers
-docker-compose stop
-docker-compose rm
-
 # create and up new containers
 docker-compose up -d
+```
+
+or use `make` (select your compose file name in Makefile, by default it is `docker-compose.yml`)
+
+```
+make update
 ```
 
 After an update, you need to reauthorize your agents.

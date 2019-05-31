@@ -10,9 +10,6 @@ services:
     env_file: .env
     restart: always
 
-  redis:
-    image: redis:3.2
-
   server:
     image: jetbrains/teamcity-server:latest
     hostname: ${VIRTUAL_HOST}
@@ -27,14 +24,9 @@ services:
     restart: always
 
   agent:
-    build: ./agents/python-node-yarn
+    image: jetbrains/teamcity-minimal-agent
     env_file: .env
     restart: always
-    depends_on:
-      - redis
-    # if you need docker inside the agent (http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
 
   nginx:
     image: nginx
