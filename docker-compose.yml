@@ -18,8 +18,8 @@ services:
       - "8111"
 #    expose:
 #      - "8111"
-#    depends_on:
-#      - postgres
+    depends_on:
+      - postgres
     env_file: .env
     labels:
       - "traefik.enable=true"
@@ -46,19 +46,17 @@ services:
 #    labels:
 #      - "traefik.enable=false"
 
-#  postgres:
-#    build: ./postgres
-#    networks:
-#      - internal
-#    volumes:
-#      #      - "/opt/teamcity/pg_data:/var/lib/postgresql/data"
-#      #      - "/opt/teamcity/pg_backup:/backups"
-#      - "/tmp/teamcity/pg_data:/var/lib/postgresql/data"
-#      - "/tmp/teamcity/pg_backup:/backups"
-#    env_file: .env
-#    restart: always
-#    labels:
-#      - "traefik.enable=false"
+  postgres:
+    build: ./postgres
+    volumes:
+      #      - "/opt/teamcity/pg_data:/var/lib/postgresql/data"
+      #      - "/opt/teamcity/pg_backup:/backups"
+      - "/tmp/teamcity/pg_data:/var/lib/postgresql/data"
+      - "/tmp/teamcity/pg_backup:/backups"
+    env_file: .env
+    restart: always
+    labels:
+      - "traefik.enable=false"
 #
 #  redis:
 #    image: redis:3.2
