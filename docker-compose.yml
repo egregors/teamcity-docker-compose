@@ -1,7 +1,7 @@
-version: '2'
+version: '3'
 
 services:
-  teamcity_server:
+  server:
     image: jetbrains/teamcity-server:latest
     networks:
       - web
@@ -14,23 +14,27 @@ services:
     #    volumes:
     #      - "/opt/teamcity/data:/data/teamcity_server/datadir"
     #      - "/opt/teamcity/logs:/opt/teamcity/logs"
-#    ports:
-#      - "8111:8111"
-    expose:
+    ports:
       - "8111"
+#    expose:
+#      - "8111"
 #    depends_on:
 #      - postgres
     env_file: .env
     labels:
       - "traefik.enable=true"
-      - "traefik.backend=teamcity_server"
+      - "traefik.backend=server"
       - "traefik.frontend.rule=Host:localhost"
-      - "traefik.docker.network=proxy"
+      - "traefik.docker.network=web"
       - "traefik.port=8111"
 
-  teamcity_agent:
-    build: ./agents/python-node-yarn
+  agent:
+    image: jetbrains/teamcity-minimal-agent
     env_file: .env
+
+#  teamcity_agent:
+#    build: ./agents/python-node-yarn
+#    env_file: .env
 #    networks:
 #      - internal
 #    depends_on:
@@ -39,8 +43,8 @@ services:
     # (http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)
 #    volumes:
 #      - "/var/run/docker.sock:/var/run/docker.sock"
-    labels:
-      - "traefik.enable=false"
+#    labels:
+#      - "traefik.enable=false"
 
 #  postgres:
 #    build: ./postgres
