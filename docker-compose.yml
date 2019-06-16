@@ -1,64 +1,81 @@
 version: '2'
 
 services:
-
-  postgres:
-    build: ./postgres
-    volumes:
-      - "/opt/teamcity/pg_data:/var/lib/postgresql/data"
-      - "/opt/teamcity/pg_backup:/backups"
-    env_file: .env
-    restart: always
-
-  redis:
-    image: redis:3.2
-
-  server:
+  teamcity_server:
     image: jetbrains/teamcity-server:latest
-    hostname: ${VIRTUAL_HOST}
+    networks:
+      - web
+      - default
     volumes:
-      - "/opt/teamcity/data:/data/teamcity_server/datadir"
-      - "/opt/teamcity/logs:/opt/teamcity/logs"
-    ports:
-      - 8111:8111
-    depends_on:
-      - postgres
-    env_file: .env
-    restart: always
+      - "/tmp/teamcity/data:/data/teamcity_server/datadir"
+      - "/tmp/teamcity/logs:/opt/teamcity/logs"
 
-  agent:
+    #    hostname: ${VIRTUAL_HOST}
+    #    volumes:
+    #      - "/opt/teamcity/data:/data/teamcity_server/datadir"
+    #      - "/opt/teamcity/logs:/opt/teamcity/logs"
+#    ports:
+#      - "8111:8111"
+    expose:
+      - "8111"
+#    depends_on:
+#      - postgres
+    env_file: .env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=teamcity_server"
+      - "traefik.frontend.rule=Host:localhost"
+      - "traefik.docker.network=proxy"
+      - "traefik.port=8111"
+
+  teamcity_agent:
     build: ./agents/python-node-yarn
     env_file: .env
+#    networks:
+#      - internal
+#    depends_on:
+#      - redis
+    # if you need docker inside the agent
+    # (http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)
+#    volumes:
+#      - "/var/run/docker.sock:/var/run/docker.sock"
+    labels:
+      - "traefik.enable=false"
+
+#  postgres:
+#    build: ./postgres
+#    networks:
+#      - internal
+#    volumes:
+#      #      - "/opt/teamcity/pg_data:/var/lib/postgresql/data"
+#      #      - "/opt/teamcity/pg_backup:/backups"
+#      - "/tmp/teamcity/pg_data:/var/lib/postgresql/data"
+#      - "/tmp/teamcity/pg_backup:/backups"
+#    env_file: .env
+#    restart: always
+#    labels:
+#      - "traefik.enable=false"
+#
+#  redis:
+#    image: redis:3.2
+#    networks:
+#      - internal
+#    labels:
+#      - "traefik.enable=false"
+
+  traefik:
+    image: traefik
     restart: always
-    depends_on:
-      - redis
-    # if you need docker inside the agent (http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-
-  nginx:
-    image: nginx
-    links:
-      - server
-    volumes:
-      - "./server/tc.conf:/etc/nginx/conf.d/default.conf"
-    env_file: .env
-
-  nginx-proxy:
-    image: jwilder/nginx-proxy
+    command: --api --docker --logLevel=INFO
     ports:
       - "80:80"
+      - "8080:8080"
       - "443:443"
+    networks:
+      - web
     volumes:
-      - "./nginx/vhost.d:/etc/nginx/vhost.d"
-      - "./nginx/html:/usr/share/nginx/html"
-      - "./nginx/certs:/etc/nginx/certs"
-      - "/var/run/docker.sock:/tmp/docker.sock:ro"
-      - "./server/proxy.conf:/etc/nginx/conf.d/proxy.conf"
+      - /var/run/docker.sock:/var/run/docker.sock
 
-  letsencrypt-nginx-proxy-companion:
-    image: jrcs/letsencrypt-nginx-proxy-companion
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-    volumes_from:
-      - "nginx-proxy"
+networks:
+  web:
+    external: true
