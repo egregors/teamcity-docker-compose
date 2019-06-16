@@ -7,11 +7,8 @@ services:
       - web
       - default
     volumes:
-      - "/tmp/teamcity/data:/data/teamcity_server/datadir"
-      - "/tmp/teamcity/logs:/opt/teamcity/logs"
-
-    #      - "/opt/teamcity/data:/data/teamcity_server/datadir"
-    #      - "/opt/teamcity/logs:/opt/teamcity/logs"
+      - "/opt/teamcity/data:/data/teamcity_server/datadir"
+      - "/opt/teamcity/logs:/opt/teamcity/logs"
 
     hostname: ${VIRTUAL_HOST}
     ports:
@@ -22,21 +19,17 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.backend=server"
-      - "traefik.frontend.rule=Host:localhost"
+      - "traefik.frontend.rule=Host:${VIRTUAL_HOST}"
       - "traefik.docker.network=web"
       - "traefik.port=8111"
-
-#  agent:
-#    image: jetbrains/teamcity-minimal-agent
-#    env_file: .env
 
   agent:
     build: ./agents/python-node-yarn
     env_file: .env
     depends_on:
       - redis
-#     if you need docker inside the agent
-#     (http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)
+    #     if you need docker inside the agent
+    #     (http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     labels:
@@ -45,12 +38,9 @@ services:
   postgres:
     build: ./postgres
     volumes:
-      #      - "/opt/teamcity/pg_data:/var/lib/postgresql/data"
-      #      - "/opt/teamcity/pg_backup:/backups"
-      - "/tmp/teamcity/pg_data:/var/lib/postgresql/data"
-      - "/tmp/teamcity/pg_backup:/backups"
+      - "/opt/teamcity/pg_data:/var/lib/postgresql/data"
+      - "/opt/teamcity/pg_backup:/backups"
     env_file: .env
-    restart: always
     labels:
       - "traefik.enable=false"
 
@@ -62,7 +52,7 @@ services:
   traefik:
     image: traefik
     restart: always
-    command: --api --docker --logLevel=INFO
+    command: --api --docker --logLevel=DEBUG
     ports:
       - "80:80"
       - "8080:8080"
@@ -71,6 +61,8 @@ services:
       - web
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik/traefik.toml:/traefik.toml
+      - ./traefik/acme.json:/acme.json
 
 networks:
   web:
