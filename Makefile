@@ -1,8 +1,6 @@
 # https://github.com/egregors/teamcity-docker-compose
 # Team City 
 
-#COMPOSE_FILE=docker-compose-without-ssl.yml
-#COMPOSE_FILE=docker-compose-minimal.yml
 COMPOSE_FILE=docker-compose.yml
 
 all: uplog
@@ -22,4 +20,9 @@ build:
 
 down:
 	docker-compose -f $(COMPOSE_FILE) down --rmi all
- 
+
+proxy:
+	touch traefik/acme.json
+	chmod 600 traefik/acme.json
+	# todo: create web return 1 if network already exist
+	docker network create web
