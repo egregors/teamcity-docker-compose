@@ -1,34 +1,16 @@
 debug = false
 
 logLevel = "ERROR"
-defaultEntryPoints = ["https","http"]
+defaultEntryPoints = ["http"]
 
 [entryPoints]
   [entryPoints.http]
   address = ":80"
-    [entryPoints.http.redirect]
-    entryPoint = "https"
-  [entryPoints.https]
-  address = ":443"
-  [entryPoints.https.tls]
 
 [retry]
 
 [docker]
 endpoint = "unix:///var/run/docker.sock"
-# Set you domain!
-domain = "example.com"
+domain = "docker.localhost"
 watch = true
 exposedByDefault = false
-
-[acme]
-# Set your email!
-email = "user@example.com"
-storage = "acme.json"
-entryPoint = "https"
-onHostRule = false
-[acme.httpChallenge]
-entryPoint = "http"
-  [[acme.domains]]
-  # Set you domain!
-    main = "example.com"

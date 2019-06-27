@@ -7,9 +7,8 @@ services:
       - web
       - default
     volumes:
-      - "/opt/teamcity/data:/data/teamcity_server/datadir"
-      - "/opt/teamcity/logs:/opt/teamcity/logs"
-
+      - "/tmp/teamcity/data:/data/teamcity_server/datadir"
+      - "/tmp/teamcity/logs:/opt/teamcity/logs"
     hostname: ${VIRTUAL_HOST}
     ports:
       - "8111"
@@ -19,7 +18,9 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.backend=server"
-      - "traefik.frontend.rule=Host:${VIRTUAL_HOST}"
+    # VIRTUAL_HOST for local case should be localhost
+    # if you wanna nossl version for non local case... no, you don't
+      - "traefik.frontend.rule=Host:localhost"
       - "traefik.docker.network=web"
       - "traefik.port=8111"
 
@@ -38,14 +39,9 @@ services:
   postgres:
     build: ./postgres
     volumes:
-      - "/opt/teamcity/pg_data:/var/lib/postgresql/data"
-      - "/opt/teamcity/pg_backup:/backups"
+      - "/tmp/teamcity/pg_data:/var/lib/postgresql/data"
+      - "/tmp/teamcity/pg_backup:/backups"
     env_file: .env
-    labels:
-      - "traefik.enable=false"
-
-  redis:
-    image: redis:3.2
     labels:
       - "traefik.enable=false"
 
@@ -55,13 +51,11 @@ services:
     command: --docker
     ports:
       - "80:80"
-      - "443:443"
     networks:
       - web
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik/traefik-ssl.toml:/traefik.toml
-      - ./traefik/acme.json:/acme.json
+      - ./traefik/traefik.toml:/traefik.toml
 
 networks:
   web:
