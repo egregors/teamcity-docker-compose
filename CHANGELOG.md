@@ -90,4 +90,4 @@ CHANGELOG
 * Move from nginx to traefik
 * SSL by almost zero config (you should only setup .env)
 * Removed redundant composes
-* 
+* README update

@@ -19,10 +19,3 @@ build:
 
 down:
 	docker-compose -f $(COMPOSE_FILE) down --rmi all
-
-# todo: add http or https options (create correct docker compoes file)
-#proxy:
-#	@if [ "$(domain)" = "" ] | [ "$(email)" = "" ]; then\
-#		echo $(domainErr);\
-#		exit 1;\
-#	fi
