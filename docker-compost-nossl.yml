@@ -7,8 +7,8 @@ services:
       - web
       - default
     volumes:
-      - "/tmp/teamcity/data:/data/teamcity_server/datadir"
-      - "/tmp/teamcity/logs:/opt/teamcity/logs"
+      - "/opt/teamcity/data:/data/teamcity_server/datadir"
+      - "/opt/teamcity/logs:/opt/teamcity/logs"
     hostname: ${VIRTUAL_HOST}
     ports:
       - "8111"
@@ -27,8 +27,6 @@ services:
   agent:
     build: ./agents/python-node-yarn
     env_file: .env
-    depends_on:
-      - redis
     #     if you need docker inside the agent
     #     (http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)
     volumes:
@@ -39,8 +37,8 @@ services:
   postgres:
     build: ./postgres
     volumes:
-      - "/tmp/teamcity/pg_data:/var/lib/postgresql/data"
-      - "/tmp/teamcity/pg_backup:/backups"
+      - "/opt/teamcity/pg_data:/var/lib/postgresql/data"
+      - "/opt/teamcity/pg_backup:/backups"
     env_file: .env
     labels:
       - "traefik.enable=false"
@@ -48,14 +46,20 @@ services:
   traefik:
     image: traefik
     restart: always
-    command: --docker
+    command:
+      - --logLevel=ERROR
+      - --docker
+      - --docker.watch=true
+      - --docker.exposedByDefault=false
+      - --docker.domain=docker.localhost
+      - --defaultEntryPoints=http
+      - --entryPoints=Name:http Address::80
     ports:
       - "80:80"
     networks:
       - web
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik/traefik.toml:/traefik.toml
 
 networks:
   web:

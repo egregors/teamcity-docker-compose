@@ -9,7 +9,6 @@ services:
     volumes:
       - "/opt/teamcity/data:/data/teamcity_server/datadir"
       - "/opt/teamcity/logs:/opt/teamcity/logs"
-
     hostname: ${VIRTUAL_HOST}
     ports:
       - "8111"
@@ -52,7 +51,25 @@ services:
   traefik:
     image: traefik
     restart: always
-    command: --docker
+    command:
+      - --logLevel=DEBUG
+      - --docker
+      - --docker.watch=true
+      - --docker.exposedByDefault=false
+      - --docker.domain=${VIRTUAL_HOST}
+      - --defaultEntryPoints=http,https
+      - --entryPoints=Name:http Address::80 Redirect.EntryPoint:https
+      - --entryPoints=Name:https Address::443 TLS
+      - --acme=true
+      - --acme.domains="${LETSENCRYPT_HOST}"
+      - --acme.email="${LETSENCRYPT_EMAIL}"
+      - --acme.storage=acme.json
+      - --acme.OnHostRule=false
+      - --acme.onDemand=false
+      - --acme.entryPoint=https
+      - --acme.httpChallenge
+      - --acme.httpChallenge.entryPoint=http
+
     ports:
       - "80:80"
       - "443:443"
@@ -60,7 +77,6 @@ services:
       - web
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik/traefik-ssl.toml:/traefik.toml
       - ./traefik/acme.json:/acme.json
 
 networks:
