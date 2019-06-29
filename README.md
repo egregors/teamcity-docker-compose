@@ -21,7 +21,7 @@ git clone https://github.com/egregors/teamcity-docker-compose.git
 
 ## Configuration
 
-All you need to do it is just to set few ENV variables in the `example.env` file.
+All you need is to set a few ENV variables in the `example.env` file.
 
 Set your Postgres username and password in `env.example` 
 
@@ -102,7 +102,7 @@ or [restore](https://confluence.jetbrains.com/display/TCD10/Restoring+TeamCity+D
 
 If you see a notice that a new version is available, you may update your TeamCity that way:
 
-use `make` (select your compose file name in Makefile, by default it is `docker-compose.yml`)
+use `make` (set your compose file name in Makefile, by default it is `docker-compose.yml`)
 
 ```
 make update
