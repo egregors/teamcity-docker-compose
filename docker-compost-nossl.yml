@@ -18,15 +18,15 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.backend=server"
-      - "traefik.frontend.rule=Host:${VIRTUAL_HOST}"
+    # VIRTUAL_HOST for local case should be localhost
+    # if you wanna nossl version for non local case... no, you don't
+      - "traefik.frontend.rule=Host:localhost"
       - "traefik.docker.network=web"
       - "traefik.port=8111"
 
   agent:
     build: ./agents/python-node-yarn
     env_file: .env
-    depends_on:
-      - redis
     #     if you need docker inside the agent
     #     (http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)
     volumes:
@@ -43,41 +43,23 @@ services:
     labels:
       - "traefik.enable=false"
 
-  redis:
-    image: redis:3.2
-    labels:
-      - "traefik.enable=false"
-
   traefik:
     image: traefik
     restart: always
     command:
-      - --logLevel=DEBUG
+      - --logLevel=ERROR
       - --docker
       - --docker.watch=true
       - --docker.exposedByDefault=false
-      - --docker.domain=${VIRTUAL_HOST}
-      - --defaultEntryPoints=http,https
-      - --entryPoints=Name:http Address::80 Redirect.EntryPoint:https
-      - --entryPoints=Name:https Address::443 TLS
-      - --acme=true
-      - --acme.domains="${LETSENCRYPT_HOST}"
-      - --acme.email="${LETSENCRYPT_EMAIL}"
-      - --acme.storage=acme.json
-      - --acme.OnHostRule=false
-      - --acme.onDemand=false
-      - --acme.entryPoint=https
-      - --acme.httpChallenge
-      - --acme.httpChallenge.entryPoint=http
-
+      - --docker.domain=docker.localhost
+      - --defaultEntryPoints=http
+      - --entryPoints=Name:http Address::80
     ports:
       - "80:80"
-      - "443:443"
     networks:
       - web
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik/acme.json:/acme.json
 
 networks:
   web:

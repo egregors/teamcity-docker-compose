@@ -1,10 +1,7 @@
 # https://github.com/egregors/teamcity-docker-compose
-# Team City 
+# Team City
 
-#COMPOSE_FILE=docker-compose-without-ssl.yml
-#COMPOSE_FILE=docker-compose-minimal.yml
 COMPOSE_FILE=docker-compose.yml
-
 all: uplog
 
 # update & upgrade TC
@@ -22,4 +19,3 @@ build:
 
 down:
 	docker-compose -f $(COMPOSE_FILE) down --rmi all
- 

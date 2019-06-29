@@ -1,2 +1,3 @@
 # My secret ENVs
 .env
+.traefik/

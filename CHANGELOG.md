@@ -85,3 +85,9 @@ CHANGELOG
 * Removed old python agent
 * Add python 3 | node 11 agent
 * Python | node agent as agent in custom agent compose
+
+#### ver.: 2019.1 (07.06.2019)
+* Move from nginx to traefik
+* SSL by almost zero config (you should only setup .env)
+* Removed redundant composes
+* README update
