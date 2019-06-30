@@ -23,6 +23,11 @@ services:
       - "traefik.frontend.rule=Host:localhost"
       - "traefik.docker.network=web"
       - "traefik.port=8111"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
 
   agent:
     build: ./agents/python-node-yarn
@@ -33,6 +38,11 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
     labels:
       - "traefik.enable=false"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
 
   postgres:
     build: ./postgres
@@ -42,6 +52,11 @@ services:
     env_file: .env
     labels:
       - "traefik.enable=false"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
 
   traefik:
     image: traefik
@@ -60,6 +75,11 @@ services:
       - web
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
 
 networks:
   web:

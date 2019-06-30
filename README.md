@@ -56,7 +56,7 @@ Now you may start up the service and continue configuring settings in Web Interf
 or
 
 ```
-mkdir -p traefik && touch traefik/acme.json && chmod 600 traefik/acme.json
+mkdir -p /opt/traefik && touch /opt/traefik/acme.json && chmod 600 /opt/traefik/acme.json
 docker-compose -f docker-compose.yml up -d && docker-compose -f docker-compose.yml logs -f -t --tail=10
 ```
 
