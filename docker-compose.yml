@@ -50,7 +50,7 @@ services:
 
   traefik:
     image: traefik
-    restart: always
+    restart: on-failure
     command:
       - --logLevel=ERROR
       - --docker
@@ -61,8 +61,8 @@ services:
       - --entryPoints=Name:http Address::80 Redirect.EntryPoint:https
       - --entryPoints=Name:https Address::443 TLS
       - --acme=true
-      - --acme.domains="${LETSENCRYPT_HOST}"
-      - --acme.email="${LETSENCRYPT_EMAIL}"
+      - --acme.domains=${LETSENCRYPT_HOST}
+      - --acme.email=${LETSENCRYPT_EMAIL}
       - --acme.storage=acme.json
       - --acme.OnHostRule=false
       - --acme.onDemand=false
@@ -76,7 +76,7 @@ services:
       - web
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik/acme.json:/acme.json
+      - /opt/traefik/acme.json:/acme.json
 
 networks:
   web:

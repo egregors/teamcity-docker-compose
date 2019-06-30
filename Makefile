@@ -22,4 +22,4 @@ down:
 	docker-compose -f $(COMPOSE_FILE) down --rmi all
 
 acme:
-	mkdir -p traefik && touch traefik/acme.json && chmod 600 traefik/acme.json
+	mkdir -p /opt/traefik && touch /opt/traefik/acme.json && chmod 600 /opt/traefik/acme.json
