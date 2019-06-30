@@ -6,6 +6,7 @@ all: uplog
 
 # update & upgrade TC
 update: stop down build uplog
+up: acme uplog
 
 # up and show logs
 uplog:
@@ -19,3 +20,6 @@ build:
 
 down:
 	docker-compose -f $(COMPOSE_FILE) down --rmi all
+
+acme:
+	mkdir -p traefik && touch traefik/acme.json && chmod 600 traefik/acme.json

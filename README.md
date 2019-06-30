@@ -51,11 +51,12 @@ or
 docker-compose -f docker-compose.yml build
 ```
 
-Now you may start up the service and continue configuring settings in Web Interface: `make uplog`
+Now you may start up the service and continue configuring settings in Web Interface: `make up`
 
 or
 
 ```
+mkdir -p traefik && touch traefik/acme.json && chmod 600 traefik/acme.json
 docker-compose -f docker-compose.yml up -d && docker-compose -f docker-compose.yml logs -f -t --tail=10
 ```
 
