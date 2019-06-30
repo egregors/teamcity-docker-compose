@@ -51,9 +51,7 @@ or
 docker-compose -f docker-compose.yml build
 ```
 
-Now you may start up the service and continue configuring settings in Web Interface:
-
-`make uplog`
+Now you may start up the service and continue configuring settings in Web Interface: `make uplog`
 
 or
 

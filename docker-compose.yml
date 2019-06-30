@@ -52,7 +52,7 @@ services:
     image: traefik
     restart: always
     command:
-      - --logLevel=DEBUG
+      - --logLevel=ERROR
       - --docker
       - --docker.watch=true
       - --docker.exposedByDefault=false
@@ -69,7 +69,6 @@ services:
       - --acme.entryPoint=https
       - --acme.httpChallenge
       - --acme.httpChallenge.entryPoint=http
-
     ports:
       - "80:80"
       - "443:443"
