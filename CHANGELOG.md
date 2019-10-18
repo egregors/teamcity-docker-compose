@@ -91,3 +91,6 @@ CHANGELOG
 * SSL by almost zero config (you should only setup .env)
 * Removed redundant composes
 * README update
+
+#### ver.: 2019.2 (18.10.2019)
+* Pin traefik image to 1.7-alpine

@@ -59,8 +59,8 @@ services:
         max-file: "5"
 
   traefik:
-    image: traefik
-    restart: always
+    image: traefik:1.7-alpine
+    restart: on-failure
     command:
       - --logLevel=ERROR
       - --docker
