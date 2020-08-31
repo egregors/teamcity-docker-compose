@@ -1,5 +1,7 @@
 FROM jetbrains/teamcity-minimal-agent:latest
 
+USER root
+
 LABEL maintainer=yaronidan@gmail.com
 
 RUN apt-get update && apt-get -y install \

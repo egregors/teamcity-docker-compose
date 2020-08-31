@@ -1,5 +1,7 @@
 FROM jetbrains/teamcity-minimal-agent:latest
 
+USER root
+
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
 
