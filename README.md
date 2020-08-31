@@ -147,6 +147,10 @@ Agent [info](agents/python-node-yarn/README.md)
 
 Agent [info](agents/bundler-ruby/README.md)
 
+### Node 14
+
+Agent [info](agents/node-14/README.md)
+
 ## Contributing
 
 Bug reports, bug fixes and new features are always welcome.

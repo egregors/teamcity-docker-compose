@@ -94,3 +94,8 @@ CHANGELOG
 
 #### ver.: 2019.2 (18.10.2019)
 * Pin traefik image to 1.7-alpine
+
+### ver.: 2020.1 (31.08.2020)
+* Fix "Permission denied" error
+* Add Node 14 agent
+* Makefile update
