@@ -51,7 +51,7 @@ RUN curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-c
 RUN chmod +x /usr/local/bin/docker-compose
 
 # node 11 and yarn 1.15
-RUN curl -sL https://deb.nodesource.com/setup_11.x -o nodesource_setup.sh
+RUN curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
 RUN bash nodesource_setup.sh
 RUN apt-get install -y nodejs
 RUN node -v
